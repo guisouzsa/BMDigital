@@ -14,7 +14,7 @@ export const SITE_DESCRIPTION =
   "A BM Digital é uma assessoria de growth e vendas, liderada por Breno Moreira, que estrutura produtos, aquisição, posicionamento e operação comercial.";
 
 /** Endereço de produção. Se um dia houver domínio próprio, basta definir NEXT_PUBLIC_SITE_URL. */
-const PRODUCTION_URL = "https://bmdigitalon.vercel.app";
+const PRODUCTION_URL = "https://bmdigitalon-iota.vercel.app";
 
 /** URL pública do site (sempre sem barra no final): canonical, Open Graph, sitemap, robots e JSON-LD. */
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || PRODUCTION_URL).replace(/\/$/, "");
