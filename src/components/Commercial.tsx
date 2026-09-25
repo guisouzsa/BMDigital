@@ -43,15 +43,15 @@ export function Commercial() {
           {commercial.chain.map((step, i) => {
             const last = i === commercial.chain.length - 1;
             return (
-              <li key={step} className="reveal border-t border-white/12 py-4 last:border-b sm:py-5">
+              <li key={step} className="reveal border-t border-white/12 py-3 last:border-b sm:py-5">
                 <span
-                  className={`text-[clamp(1.5rem,1.2rem+1.4vw,2.5rem)] leading-none font-semibold tracking-[-0.03em] ${
+                  className={`text-[clamp(1.25rem,1rem+1.4vw,2.5rem)] leading-none font-semibold tracking-[-0.03em] ${
                     last ? "text-brand-bright" : ""
                   }`}
                 >
                   {step}
                 </span>
-                <div aria-hidden="true" className="mt-3 h-px">
+                <div aria-hidden="true" className="mt-2 h-px sm:mt-3">
                   <div className={`mark-x h-px ${last ? "bg-brand-bright" : "bg-white/35"}`} />
                 </div>
               </li>

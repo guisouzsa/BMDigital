@@ -8,7 +8,7 @@ import { machine } from "@/content";
 export function ScrollBand() {
   const items = [...machine.chain, "Escala"];
   const line = (key: string) =>
-    [0, 1, 2].map((n) => (
+    [0, 1].map((n) => (
       <span key={`${key}-${n}`} className="flex shrink-0 items-center">
         {items.map((item) => (
           <span key={item} className="flex items-center">
@@ -20,11 +20,11 @@ export function ScrollBand() {
     ));
 
   return (
-    <div aria-hidden="true" className="grain relative isolate overflow-clip bg-ink py-10 select-none sm:py-14">
-      <div className="band-left flex w-max text-[clamp(2.25rem,1.4rem+4vw,4.75rem)] leading-none font-bold tracking-[-0.04em] whitespace-nowrap text-white">
+    <div aria-hidden="true" className="relative isolate overflow-clip bg-ink py-6 select-none sm:py-8">
+      <div className="band-left flex w-max bg-ink text-[clamp(1.375rem,1rem+1.8vw,2.5rem)] leading-none font-semibold tracking-[-0.03em] whitespace-nowrap text-white">
         {line("a")}
       </div>
-      <div className="band-right mt-3 flex w-max text-[clamp(2.25rem,1.4rem+4vw,4.75rem)] leading-none font-bold tracking-[-0.04em] whitespace-nowrap text-transparent [-webkit-text-stroke:1px_var(--color-brand-bright)] sm:mt-4">
+      <div className="band-right mt-2 flex w-max bg-ink text-[clamp(1.375rem,1rem+1.8vw,2.5rem)] leading-none font-semibold tracking-[-0.03em] whitespace-nowrap text-brand-bright sm:mt-4">
         {line("b")}
       </div>
     </div>

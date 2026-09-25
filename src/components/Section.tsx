@@ -6,7 +6,7 @@ type Tone = "light" | "white" | "dark";
 const tones: Record<Tone, string> = {
   light: "bg-surface text-ink",
   white: "bg-white text-ink",
-  dark: "grain bg-ink text-white",
+  dark: "bg-ink text-white",
 };
 
 type SectionProps = {
@@ -26,7 +26,7 @@ export function Section({ id, navId, tone = "light", labelledBy, className = "",
       data-nav={navId}
       data-tone={tone === "dark" ? "dark" : "light"}
       aria-labelledby={labelledBy}
-      className={`relative isolate scroll-mt-16 overflow-clip py-16 sm:py-24 ${tones[tone]} ${className}`}
+      className={`relative isolate scroll-mt-16 overflow-clip py-14 sm:py-20 lg:py-24 ${tones[tone]} ${className}`}
     >
       <div className="container-page relative z-10">{children}</div>
     </section>

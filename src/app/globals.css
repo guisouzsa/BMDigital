@@ -114,17 +114,6 @@
     text-wrap: pretty;
   }
 
-  /* Ruído sutil nos blocos escuros */
-  .grain::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.3;
-    background-image: url("/images/grain.png");
-    background-size: 128px 128px;
-  }
-
 }
 
 /* ---------------------------------------------------------------
@@ -151,15 +140,50 @@
       animation-range: entry 18% entry 53%;
     }
 
-    /* Entrada lateral: o elemento desliza de um dos lados ao entrar na tela */
+    /* Entrada lateral (desktop). No mobile vira o reveal comum, sem deslocar o texto de lado. */
     .slide-left,
     .slide-right {
-      animation: slide-left linear both;
+      animation: reveal linear both;
       animation-timeline: view();
-      animation-range: entry 5% cover 35%;
+      animation-range: entry 0% entry 35%;
     }
-    .slide-right {
-      animation-name: slide-right;
+    @media (min-width: 1024px) {
+      .slide-left,
+      .slide-right {
+        animation-name: slide-left;
+        animation-range: entry 5% cover 35%;
+      }
+      .slide-right {
+        animation-name: slide-right;
+      }
+    }
+
+    /* Cena dos pilares (desktop): a tela trava e três painéis se revelam em sequência */
+    @media (min-width: 1024px) {
+      .stage {
+        height: 260vh;
+        view-timeline-name: --stage;
+      }
+      .stage-sticky {
+        position: sticky;
+        top: 0;
+        height: 100svh;
+      }
+      .stage-panel {
+        animation: panel-wipe linear both;
+        animation-timeline: --stage;
+        animation-range: contain var(--from) contain var(--to);
+      }
+      .stage-panel-content {
+        animation: reveal linear both;
+        animation-timeline: --stage;
+        animation-range: contain var(--content-from) contain var(--content-to);
+      }
+      .stage-word {
+        animation: stage-word linear both;
+        animation-timeline: --stage;
+        animation-range: contain 0% contain 100%;
+      }
     }
 
     /* Faixa de texto que desliza na horizontal acompanhando a rolagem */
@@ -240,6 +264,11 @@
     animation: reveal 0.45s var(--ease-soft) both;
   }
 
+  /* Globo no celular: giro lento em torno do próprio centro, só na GPU */
+  .globe-spin {
+    animation: globe-spin 240s linear infinite;
+  }
+
   /* Entrada do botão flutuante */
   .float-in {
     animation: float-in 0.6s var(--ease-soft) 0.8s both;
@@ -251,7 +280,7 @@
     animation-delay: var(--d, 0ms);
   }
 
-  /* Revelação editorial do título: sobe, perde o desfoque e a máscara se abre.
+  /* Revelação editorial do título: sobe enquanto a máscara se abre.
      O texto é pintado desde o primeiro quadro (sem opacidade 0), para não atrasar o LCP. */
   .intro-title {
     animation: intro-title 0.8s var(--ease-soft) both;
@@ -294,12 +323,10 @@
 @keyframes intro-title {
   from {
     transform: translateY(0.25em);
-    filter: blur(6px);
     clip-path: inset(0 0 40% 0);
   }
   to {
     transform: none;
-    filter: blur(0);
     clip-path: inset(-10% -5% -25% -5%);
   }
 }
@@ -339,6 +366,24 @@
   }
 }
 
+@keyframes panel-wipe {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes stage-word {
+  from {
+    transform: translateY(-50%) scale(0.92);
+  }
+  to {
+    transform: translateY(-50%) scale(1.05);
+  }
+}
+
 @keyframes slide-left {
   from {
     opacity: 0;
@@ -368,6 +413,12 @@
   }
   to {
     transform: translateX(0);
+  }
+}
+
+@keyframes globe-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 

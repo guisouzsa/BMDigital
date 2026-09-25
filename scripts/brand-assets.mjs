@@ -78,15 +78,5 @@ fs.writeFileSync("public/brand/bm-symbol.svg", `<svg xmlns="http://www.w3.org/20
   fs.copyFileSync("src/app/opengraph-image.png", "src/app/twitter-image.png");
 }
 
-// 6. Textura de ruído (grain) leve, usada em blocos escuros
-{
-  const N = 128;
-  const buf = Buffer.alloc(N * N * 2);
-  for (let i = 0; i < N * N; i++) {
-    buf[i * 2] = Math.random() < 0.5 ? 0 : 255;
-    buf[i * 2 + 1] = Math.floor(Math.random() * 40);
-  }
-  await sharp(buf, { raw: { width: N, height: N, channels: 2 } }).png({ compressionLevel: 9 }).toFile("public/images/grain.png");
-}
 
 console.log("ok");

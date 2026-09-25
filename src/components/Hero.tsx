@@ -15,7 +15,7 @@ export function Hero() {
       data-nav="inicio"
       data-tone="dark"
       aria-labelledby="hero-title"
-      className="grain relative isolate flex min-h-[max(100svh,40rem)] flex-col overflow-hidden bg-ink text-white lg:justify-center"
+      className="relative isolate flex min-h-[max(100svh,40rem)] flex-col overflow-hidden bg-ink text-white lg:justify-center"
     >
       <Globe contentId="hero-content" />
 

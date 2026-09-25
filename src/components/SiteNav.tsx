@@ -100,7 +100,7 @@ export function SiteNav() {
           </a>
 
           <nav aria-label="Seções da página" className="hidden xl:block">
-            <ol className="relative flex items-center gap-7">
+            <ol className="relative flex items-center gap-6 rounded-full border border-white/12 bg-white/[0.04] px-6 transition-colors duration-500 group-data-light/nav:border-ink/10 group-data-light/nav:bg-ink/[0.03]">
               {nav.slice(1).map((item) => {
                 const isActive = item.id === active;
                 return (

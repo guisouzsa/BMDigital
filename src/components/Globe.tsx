@@ -248,13 +248,15 @@ export function Globe({ contentId }: { contentId: string }) {
       const settling =
         Math.abs(target.yaw - current.yaw) + Math.abs(target.x - current.x) + Math.abs(target.y - current.y) > 0.05 ||
         field.strength > 0.01;
-      if (settling || now - lastDraw > 33) {
+      // Só girando: 30 fps no desktop, 15 fps no celular (rotação lenta, economiza CPU e bateria)
+      if (settling || now - lastDraw > (finePointer ? 33 : 66)) {
         draw();
         lastDraw = now;
       }
       raf = visible && !document.hidden ? requestAnimationFrame(loop) : 0;
     };
     const start = () => {
+      if (!finePointer) return; // celular: sem loop (ver spinOnCompositor)
       if (!raf && visible && !document.hidden && !reduced) {
         last = 0;
         raf = requestAnimationFrame(loop);
@@ -293,14 +295,23 @@ export function Globe({ contentId }: { contentId: string }) {
     };
     const onLeave = () => setOver(false);
 
+    // No celular o globo é desenhado uma vez e gira devagar com CSS em torno do próprio centro:
+    // o movimento roda na GPU e não ocupa o processador.
+    const spinOnCompositor = () => {
+      if (finePointer || reduced) return;
+      canvas.style.transformOrigin = `${cx}px ${cy}px`;
+      canvas.classList.add("globe-spin");
+    };
+
     let started = false;
     const boot = () => {
       if (started) return;
       started = true;
-      pts = buildPoints(window.innerWidth < 1024 ? 3000 : 6000);
+      pts = buildPoints(window.innerWidth < 1024 ? 2200 : 6000);
       resize();
       draw();
       canvas.dataset.ready = "true";
+      spinOnCompositor();
       start();
     };
     const idle = () =>
@@ -312,6 +323,7 @@ export function Globe({ contentId }: { contentId: string }) {
       if (!started) return;
       resize();
       draw();
+      spinOnCompositor();
     });
     ro.observe(canvas);
     const io = new IntersectionObserver(([entry]) => {

@@ -41,7 +41,7 @@ export function Diagnosis() {
             aria-label="Etapas da operação"
             aria-orientation="vertical"
             onKeyDown={onKeyDown}
-            className="-mx-4 mt-4 flex gap-1 overflow-x-auto px-4 pb-2 lg:mx-0 lg:flex-col lg:gap-0 lg:overflow-visible lg:px-0 lg:pb-0"
+            className="mt-4 flex flex-wrap gap-2 lg:flex-col lg:flex-nowrap lg:gap-0"
           >
             {diagnosis.areas.map((a, i) => {
               const isSelected = i === selected;
@@ -58,7 +58,7 @@ export function Diagnosis() {
                   aria-controls="raio-x-painel"
                   tabIndex={isSelected ? 0 : -1}
                   onClick={() => setSelected(i)}
-                  className={`group flex min-h-11 shrink-0 items-center gap-3 rounded-full border px-4 text-base font-semibold tracking-tight transition-colors duration-200 lg:min-h-12 lg:rounded-none lg:border-0 lg:border-t lg:px-0 lg:text-lg lg:last:border-b ${
+                  className={`group flex min-h-11 shrink-0 items-center gap-3 rounded-full border px-4 text-sm font-semibold sm:text-base tracking-tight transition-colors duration-200 lg:min-h-12 lg:rounded-none lg:border-0 lg:border-t lg:px-0 lg:text-lg lg:last:border-b ${
                     isSelected
                       ? "border-ink bg-ink text-white lg:border-ink/12 lg:bg-transparent lg:text-ink"
                       : "border-ink/15 text-subtle hover:text-ink lg:border-ink/12"
