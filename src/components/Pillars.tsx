@@ -31,7 +31,7 @@ function PillarRow({ pillar, visual, reverse = false }: { pillar: Pillar; visual
         aria-hidden="true"
         className="absolute -top-px left-0 h-px w-full origin-left scale-x-0 bg-brand transition-transform duration-700 ease-(--ease-soft) group-hover/pillar:scale-x-100"
       />
-      <div className={`reveal lg:col-span-6 ${reverse ? "lg:order-2 lg:col-start-7" : ""}`}>
+      <div className={`lg:col-span-6 ${reverse ? "slide-right lg:order-2 lg:col-start-7" : "slide-left"}`}>
         <div className="flex items-baseline gap-5">
           <span aria-hidden="true" className="text-[clamp(2.5rem,2rem+2vw,3.75rem)] leading-[0.85] font-semibold tracking-[-0.05em] text-brand tabular-nums transition-transform duration-500 ease-(--ease-soft) group-hover/pillar:translate-x-1">
             {pillar.number}
@@ -43,7 +43,7 @@ function PillarRow({ pillar, visual, reverse = false }: { pillar: Pillar; visual
         </h3>
         <p className="lead mt-5 text-subtle">{pillar.text}</p>
       </div>
-      <div data-delay="2" className={`reveal lg:col-span-5 lg:self-center ${reverse ? "lg:order-1 lg:col-start-1" : "lg:col-start-8"}`}>{visual}</div>
+      <div className={`lg:col-span-5 lg:self-center ${reverse ? "slide-left lg:order-1 lg:col-start-1" : "slide-right lg:col-start-8"}`}>{visual}</div>
     </article>
   );
 }

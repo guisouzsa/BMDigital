@@ -11,6 +11,7 @@ import { Pillars } from "@/components/Pillars";
 import { Manifesto, Positioning } from "@/components/Positioning";
 import { Problem } from "@/components/Problem";
 import { Process } from "@/components/Process";
+import { ScrollBand } from "@/components/ScrollBand";
 import { SiteNav } from "@/components/SiteNav";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 
@@ -29,6 +30,7 @@ export default function Home() {
         <Hero />
         <Problem />
         <Machine />
+        <ScrollBand />
         <Pillars />
         <AiSeo />
         <Commercial />

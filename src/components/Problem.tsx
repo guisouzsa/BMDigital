@@ -16,7 +16,7 @@ export function Problem() {
         {/* A cadeia e os pontos onde ela quebra */}
         <ol className="lg:col-span-6 lg:col-start-7">
           {problem.breaks.map((item) => (
-            <li key={item.cause} className="reveal border-t border-ink/12 py-5 last:border-b">
+            <li key={item.cause} className="slide-right border-t border-ink/12 py-5 last:border-b">
               <p>
                 <span className="block text-[0.9375rem] text-subtle">{item.cause}</span>
                 <span className="mt-1 block text-lg leading-snug font-semibold tracking-tight sm:text-xl">{item.effect}</span>

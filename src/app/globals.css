@@ -151,6 +151,29 @@
       animation-range: entry 18% entry 53%;
     }
 
+    /* Entrada lateral: o elemento desliza de um dos lados ao entrar na tela */
+    .slide-left,
+    .slide-right {
+      animation: slide-left linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 35%;
+    }
+    .slide-right {
+      animation-name: slide-right;
+    }
+
+    /* Faixa de texto que desliza na horizontal acompanhando a rolagem */
+    .band-left {
+      animation: band-left linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+    .band-right {
+      animation: band-right linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+
     /* Etapa em foco numa sequência: o marcador acende na sua vez e fica marcado depois */
     .step-dot {
       animation: step-focus linear both;
@@ -313,6 +336,38 @@
   100% {
     transform: translateY(100%);
     opacity: 0;
+  }
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(-4rem);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(4rem);
+  }
+}
+
+@keyframes band-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-12%);
+  }
+}
+
+@keyframes band-right {
+  from {
+    transform: translateX(-12%);
+  }
+  to {
+    transform: translateX(0);
   }
 }
 
