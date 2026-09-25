@@ -165,8 +165,25 @@
         view-timeline-name: --stage;
       }
       /* Variação mais curta da cena (usada em "Como trabalhamos") */
-      .stage[data-size="short"] {
-        height: 190vh;
+      /* Trilho horizontal ("Como trabalhamos"): a rolagem vertical move as etapas para a esquerda */
+      .stage[data-size="track"] {
+        height: 300vh;
+      }
+      .hscroll-track,
+      .hscroll-track > ol {
+        flex-wrap: nowrap;
+        width: max-content;
+      }
+      .hscroll-track {
+        animation: hscroll linear both;
+        animation-timeline: --stage;
+        animation-range: contain 4% contain 96%;
+      }
+      .hscroll-progress {
+        transform-origin: left;
+        animation: draw-x linear both;
+        animation-timeline: --stage;
+        animation-range: contain 4% contain 96%;
       }
       .stage-sticky {
         position: sticky;
@@ -367,6 +384,15 @@
   100% {
     transform: translateY(100%);
     opacity: 0;
+  }
+}
+
+@keyframes hscroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% + 100vw));
   }
 }
 
